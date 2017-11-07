@@ -20,15 +20,21 @@
 */
 package com.kumuluz.ee.account;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+@RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("accounts")
 public class AccountResource {
+
+    @Inject
+    private AccountBean accountBean;
 
     @GET
     public Response getAllAccounts() {
@@ -63,8 +69,12 @@ public class AccountResource {
 
     @POST
     public Response addNewAccount(Account account) {
-        Database.addAccounts(account);
-        return Response.noContent().build();
+        if (accountBean.addAccount(account)) {
+            return Response.status(Response.Status.OK).build();
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
+
     }
 
     @DELETE

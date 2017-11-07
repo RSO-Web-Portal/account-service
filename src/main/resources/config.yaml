@@ -1,0 +1,16 @@
+kumuluzee:
+  name: account-service
+  env:
+    name: dev
+  version: 1.0.0
+  server:
+    base-url: http://localhost:8080
+    http:
+      port: 8080
+  config:
+    etcd:
+      hosts: http://localhost:2379
+rest-properties:
+  external-dependencies:
+    account-service:
+      registration-enabled: true
