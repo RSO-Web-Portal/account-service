@@ -4,7 +4,7 @@ RUN mkdir /account
 
 WORKDIR /account
 
-COPY . ./catalogue
+COPY . ./account
 ADD . /account
 
 EXPOSE 8080
