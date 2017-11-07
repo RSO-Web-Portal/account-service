@@ -1,0 +1,22 @@
+sudo: required
+
+language: java
+dist: trusty
+
+jdk:
+- openjdk8
+
+services:
+  - docker
+
+before_install:
+  - docker build -t dockerfile .
+  - docker run -d -p 127.0.0.1:8080:4567 dockerfile /bin/sh -c "cd /root; bundle exec foreman start;"
+  - docker ps -a
+  - docker run dockerfile /bin/sh -c "cd /root;"
+  
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push rsodocker123/account-service;
+    fi
