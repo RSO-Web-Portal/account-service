@@ -10,6 +10,11 @@ kumuluzee:
   config:
     etcd:
       hosts: http://localhost:2379
+  discovery:
+    etcd:
+      hosts: http://localhost:2379
+    ttl: 20
+    ping-interval: 15
 rest-properties:
   external-dependencies:
     account-service:
