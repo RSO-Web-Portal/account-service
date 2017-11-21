@@ -13,7 +13,10 @@ public class AccountBean {
     private RestProperties restProperties;
 
     public boolean addAccount(Account a) {
-        if (restProperties.isRegistrationEnabled()) {
+        
+		//System.out.println(restProperties.isRegistrationEnabled());
+		
+		if (restProperties.isRegistrationEnabled()) {
             Database.addAccounts(a);
             return true;
         } else {
