@@ -3,50 +3,27 @@ kind: Service
 metadata:
   name: account-service
   labels:
-    run: account-service
+    qwe: account-service
 spec:
   type: NodePort
   ports:
   - port: 8081
-    targetPort: 80
+    targetPort: 8081
     protocol: TCP
     name: http
-  - port: 443
-    protocol: TCP
-    name: https
   selector:
-    run: account-service
+    qwe: account-service
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: 2017-12-10T16:08:36Z
-  generation: 1
-  labels:
-    app: account-service
   name: account-service
-  namespace: default
-  resourceVersion: "178675"
-  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/account-service
-  uid: 60cb55de-ddc4-11e7-8b40-32365be20012
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: account-service
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: account-service
-      name: account-service
+        qwe: account-service
     spec:
       containers:
       - image: rsodocker123/account-service
@@ -60,21 +37,4 @@ spec:
           privileged: false
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 1
-  conditions:
-  - lastTransitionTime: 2017-12-10T16:08:36Z
-    lastUpdateTime: 2017-12-10T16:08:36Z
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  observedGeneration: 1
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
