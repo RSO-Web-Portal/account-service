@@ -9,4 +9,4 @@ ADD . /account
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "account/jax-rs-2.5.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/jax-rs-2.5.0-SNAPSHOT.jar"]
