@@ -52,6 +52,9 @@ spec:
       - image: rsodocker123/account-service
         imagePullPolicy: Always
         name: account-service
+        ports:
+        - containerPort: 443
+        - containerPort: 8081
         resources: {}
         securityContext:
           privileged: false
