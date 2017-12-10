@@ -10,7 +10,7 @@ services:
   - docker
 
 before_install:
-  - mvn build package
+  - mvn clean package
   - docker build -t rsodocker123:account-service .
   - docker run -d -p 127.0.0.1:8081:8081 rsodocker123:account-service
   - docker ps -a
