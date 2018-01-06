@@ -27,10 +27,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+
+import com.kumuluz.ee.logs.cdi.Log;
+import com.kumuluz.ee.logs.cdi.LogParams;
+
+
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("accounts")
+@Log(LogParams.METRICS)
 public class AccountResource {
 
     @Inject
@@ -52,15 +58,19 @@ public class AccountResource {
     @GET
     @Path("{accountId}")
     public Response getAccount(@PathParam("accountId") String accountId) {
+
         Account account = Database.getAccounts(accountId);
         return account != null
                 ? Response.ok(account).build()
                 : Response.status(Response.Status.NOT_FOUND).build();
     }
 
+
+
     @GET
     @Path("{accountId}/name")
     public Response getAccountName(@PathParam("accountId") String accountId) {
+
         Account account = Database.getAccounts(accountId);
         return account != null
                 ? Response.ok().entity(account.getFirstName() + " " + account.getLastName()).build()

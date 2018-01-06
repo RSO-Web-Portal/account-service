@@ -6,6 +6,7 @@ import com.kumuluz.ee.account.configuration.RestProperties;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+
 @RequestScoped
 public class AccountBean {
 

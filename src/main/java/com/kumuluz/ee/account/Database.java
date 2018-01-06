@@ -20,8 +20,6 @@
 */
 package com.kumuluz.ee.account;
 
-import javax.annotation.PostConstruct;
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +50,7 @@ public class Database {
     }
 
     public static Account getAccounts(String accountId) {
+
         for (Account account : accounts) {
             if (account.getId().equals(accountId))
                 return account;
@@ -59,6 +58,7 @@ public class Database {
 
         return null;
     }
+
 
     public static void addAccounts(Account account) {
         accounts.add(account);
