@@ -30,6 +30,17 @@ public class Account {
     private String lastName;
     private Date registrationDate;
 
+    public Account() {
+
+    }
+
+    public Account(String id, String firstName, String lastName, Date registrationDate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.registrationDate = registrationDate;
+    }
+
     public String getId() {
         return id;
     }

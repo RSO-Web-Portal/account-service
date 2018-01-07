@@ -21,11 +21,17 @@
 package com.kumuluz.ee.account;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class Database {
-    private static List<Account> accounts = new ArrayList<>();
+    private static List<Account> accounts = new ArrayList<>(
+            Arrays.asList(
+                    new Account("1", "Pepe", "Pepek", new Date()),
+                    new Account("2", "Lojze", "Lojzar", new Date())
+            )
+    );
 
     public static void initDatabase() {
 
